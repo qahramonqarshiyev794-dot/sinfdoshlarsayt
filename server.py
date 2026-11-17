@@ -392,9 +392,28 @@ class SiteHandler(BaseHTTPRequestHandler):
         self.send_json(HTTPStatus.OK, {"status": request["status"]})
 
     def do_POST(self):
-        if self.headers.get("Origin"):
-            expected = f"{'https' if COOKIE_SECURE else 'http'}://{self.headers.get('Host', '')}"
-            if self.headers["Origin"].rstrip("/") != expected:
+        origin = self.headers.get("Origin")
+        if origin:
+            render_host = os.environ.get("RENDER_EXTERNAL_HOSTNAME", "").strip().lower()
+            is_render = bool(render_host or os.environ.get("RENDER_EXTERNAL_URL"))
+            expected_scheme = "https" if COOKIE_SECURE or is_render else "http"
+            parsed_origin = urlparse(origin)
+            allowed_hosts = {self.headers.get("Host", "").strip().lower()}
+            if is_render:
+                if render_host:
+                    allowed_hosts.add(render_host)
+                forwarded_host = self.headers.get("X-Forwarded-Host", "").strip().lower()
+                if forwarded_host:
+                    allowed_hosts.add(forwarded_host)
+            if (
+                parsed_origin.scheme != expected_scheme
+                or parsed_origin.netloc.lower() not in allowed_hosts
+                or parsed_origin.username
+                or parsed_origin.password
+                or parsed_origin.path not in ("", "/")
+                or parsed_origin.query
+                or parsed_origin.fragment
+            ):
                 self.send_json(HTTPStatus.FORBIDDEN, {"error": "So‘rov manbasi rad etildi."})
                 return
 
