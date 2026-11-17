@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f4ef">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>Sinfdoshlar — xotiralarimiz</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Sinfdoshlar bosh sahifasi">
+        <span class="brand-mark">S</span>
+        <span>sinfdoshlar<span class="brand-dot">.</span></span>
+      </a>
+      <span class="top-note"><span class="status-dot"></span> Yopiq xotiralar arxivi</span>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">BIRGA O‘TGAN DAMLARIMIZ</p>
+        <h1>Eng yaxshi xotiralar<br>birga <span>qoladi.</span></h1>
+        <p class="intro">Sinfdoshlar davrasidagi unutilmas videolar va lahzalar — faqat ma’qullangan foydalanuvchilar uchun.</p>
+        <div class="hero-meta">
+          <span class="avatar-stack" aria-hidden="true"><i>S</i><i>F</i><i>+</i></span>
+          <span>Sinfdoshlar uchun maxsus</span>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="sun"></div>
+        <div class="photo-card photo-back"><span>2023</span></div>
+        <div class="photo-card photo-front"><span class="play-icon">▶</span><span class="photo-label">Bir sinf.<br>Bir umr.</span></div>
+        <span class="sparkle sparkle-one">✳</span><span class="sparkle sparkle-two">✳</span>
+        <span class="art-caption">esdaliklarimizdan</span>
+      </div>
+    </section>
+
+    <section id="notice" class="notice" hidden></section>
+
+    <section id="request-view" class="access-card">
+      <div class="card-heading">
+        <span class="step-number">01</span>
+        <div><p class="eyebrow">XUSH KELIBSIZ</p><h2>Arxivga qo‘shiling</h2></div>
+      </div>
+      <p class="card-copy">Elektron pochta manzilingiz, parolingiz va ismingizni kiriting. Boshqaruvchi so‘rovingizni ma’qullagach, shu ma’lumotlar bilan tizimga kira olasiz.</p>
+      <form id="request-form" class="form">
+        <label for="visitor-name">Ism-familiya</label>
+        <input id="visitor-name" name="name" maxlength="80" autocomplete="name" placeholder="Masalan, Aziz Karimov" required>
+        <label for="register-email">Elektron pochta</label>
+        <input id="register-email" name="email" type="email" maxlength="254" autocomplete="email" placeholder="ism@example.uz" required>
+        <label for="register-password">Parol (kamida 8 belgi)</label>
+        <div class="password-field">
+          <input id="register-password" name="password" type="password" minlength="8" maxlength="128" autocomplete="new-password" required>
+          <button class="password-toggle" type="button" data-toggle-password="register-password">Ko‘rsatish</button>
+        </div>
+        <label for="register-password-confirm">Parolni qayta kiriting</label>
+        <div class="password-field">
+          <input id="register-password-confirm" name="passwordConfirm" type="password" minlength="8" maxlength="128" autocomplete="new-password" required>
+          <button class="password-toggle" type="button" data-toggle-password="register-password-confirm">Ko‘rsatish</button>
+        </div>
+        <button class="button button-primary" type="submit">So‘rov yuborish <span>↗</span></button>
+      </form>
+      <div id="request-status" class="inline-status" aria-live="polite"></div>
+      <div class="divider"><span>yoki</span></div>
+      <button id="show-user-login" class="text-button" type="button">Tasdiqlangan hisobim bor <span>→</span></button>
+      <button id="show-admin" class="text-button" type="button">Boshqaruvchi sifatida kirish <span>→</span></button>
+    </section>
+
+    <section id="user-login-view" class="access-card" hidden>
+      <div class="card-heading">
+        <span class="step-number">02</span>
+        <div><p class="eyebrow">HISOBGA KIRISH</p><h2>Qaytib kelganingizdan xursandmiz</h2></div>
+      </div>
+      <p class="card-copy">Faqat boshqaruvchi ma’qullagan foydalanuvchilar kira oladi.</p>
+      <form id="user-login-form" class="form">
+        <label for="user-email">Elektron pochta</label>
+        <input id="user-email" name="email" type="email" autocomplete="email" required>
+        <label for="user-password">Parol</label>
+        <div class="password-field">
+          <input id="user-password" name="password" type="password" maxlength="128" autocomplete="current-password" required>
+          <button class="password-toggle" type="button" data-toggle-password="user-password">Ko‘rsatish</button>
+        </div>
+        <button class="button button-primary" type="submit">Kirish <span>↗</span></button>
+      </form>
+      <div id="user-login-error" class="inline-status error" aria-live="polite"></div>
+      <button id="back-to-register" class="text-button back-button" type="button">← Ro‘yxatdan o‘tish</button>
+    </section>
+
+    <section id="admin-login-view" class="access-card" hidden>
+      <div class="card-heading">
+        <span class="step-number">03</span>
+        <div><p class="eyebrow">BOSHQARUV</p><h2>Boshqaruv paneli</h2></div>
+      </div>
+      <form id="admin-login-form" class="form">
+        <label for="admin-username">Foydalanuvchi nomi</label>
+        <input id="admin-username" name="username" autocomplete="username" required>
+        <label for="admin-password">Parol</label>
+        <input id="admin-password" name="password" type="password" autocomplete="current-password" required>
+        <button class="button button-primary" type="submit">Kirish <span>↗</span></button>
+      </form>
+      <div id="login-error" class="inline-status error" aria-live="polite"></div>
+      <button id="back-to-request" class="text-button back-button" type="button">← Orqaga</button>
+    </section>
+
+    <section id="pending-view" class="access-card pending-card" hidden>
+      <span class="pending-icon">⌛</span>
+      <p class="eyebrow">SO‘ROV QABUL QILINDI</p>
+      <h2>Tasdiqni kuting</h2>
+      <p class="card-copy">Boshqaruvchi so‘rovingizni ko‘rib chiqadi. Ma’qullangach, elektron pochta manzilingiz va parolingiz bilan tizimga kiring.</p>
+      <div id="pending-status" class="inline-status" aria-live="polite">Holat tekshirilmoqda…</div>
+      <button id="pending-login" class="button button-primary" type="button" hidden>Tasdiqlandi — kirish <span>→</span></button>
+      <button id="cancel-request" class="text-button" type="button">Boshqa so‘rov yuborish</button>
+    </section>
+
+    <section id="viewer-view" class="content-panel" hidden>
+      <div class="panel-heading">
+        <button class="button button-quiet logout-button" type="button">Chiqish</button>
+      </div>
+      <div id="video-list"></div>
+      <div id="video-player" class="video-player" hidden>
+        <div class="player-heading">
+          <h3 id="player-title">Video</h3>
+          <button id="fullscreen-player" class="player-fullscreen" type="button" aria-label="Kattalashtirish" title="Kattalashtirish">⛶</button>
+        </div>
+        <div id="player-content" class="player-content"></div>
+        <div class="player-controls">
+          <button id="player-previous" class="player-skip" type="button" aria-label="Oldingi video" title="Oldingi video">← Oldingi</button>
+          <button id="player-play-toggle" class="player-play-toggle" type="button" aria-label="Ijro etish" hidden>▶</button>
+          <button id="player-next" class="player-skip" type="button" aria-label="Keyingi video" title="Keyingi video">Keyingi →</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="admin-view" class="content-panel admin-panel" hidden>
+      <div class="panel-heading">
+        <div><p class="eyebrow">BOSHQARUV PANELI</p><h2>Xush kelibsiz<span class="brand-dot">.</span></h2></div>
+        <button class="button button-quiet logout-button" type="button">Chiqish</button>
+      </div>
+      <div class="admin-columns">
+        <section class="admin-section">
+          <div class="section-title"><h3>Kirish so‘rovlari</h3><span id="request-count" class="count-pill">0</span></div>
+          <div id="admin-requests" class="request-list"></div>
+        </section>
+        <section class="admin-section">
+          <div class="section-title"><h3>Video qo‘shish</h3></div>
+          <form id="video-form" class="form compact-form">
+            <label for="video-title">Video nomi</label>
+            <input id="video-title" name="title" maxlength="120" placeholder="Masalan, Sinf uchrashuvi" required>
+            <label for="video-category">Bo‘lim nomi</label>
+            <input id="video-category" name="category" list="video-categories" maxlength="60" placeholder="Masalan, 1-qism" required>
+            <datalist id="video-categories"></datalist>
+            <label for="video-url">Onlayn ko‘rish havolasi (HTTPS)</label>
+            <input id="video-url" name="url" type="url" placeholder="https://..." required>
+            <button class="button button-primary" type="submit">Videoni qo‘shish <span>+</span></button>
+          </form>
+          <div id="video-message" class="inline-status" aria-live="polite"></div>
+          <div class="section-title video-admin-title"><h3>Saytdagi videolar</h3></div>
+          <div id="admin-videos" class="admin-video-list"></div>
+        </section>
+        <section class="admin-section">
+          <div class="section-title"><h3>Tasdiqlangan foydalanuvchilar</h3><span id="user-count" class="count-pill">0</span></div>
+          <div id="admin-users" class="admin-user-list"></div>
+        </section>
+      </div>
+      <section class="admin-section admin-password-section">
+        <div class="section-title"><h3>Boshqaruvchi parolini o‘zgartirish</h3></div>
+        <form id="admin-password-form" class="form compact-form">
+          <label for="admin-current-password">Joriy parol</label>
+          <input id="admin-current-password" name="currentPassword" type="password" autocomplete="current-password" required>
+          <label for="admin-new-password">Yangi parol</label>
+          <input id="admin-new-password" name="newPassword" type="password" minlength="8" maxlength="128" autocomplete="new-password" required>
+          <label for="admin-confirm-password">Yangi parolni takrorlang</label>
+          <input id="admin-confirm-password" name="confirmPassword" type="password" minlength="8" maxlength="128" autocomplete="new-password" required>
+          <button class="button button-primary" type="submit">Parolni yangilash</button>
+        </form>
+        <div id="admin-password-message" class="inline-status" aria-live="polite"></div>
+      </section>
+      <p class="video-note">Bo‘lim nomini kiriting yoki mavjudini tanlang. YouTube’dagi maxfiy videolarni faqat ruxsat berilgan Google hisoblari orqali ko‘rish mumkin. Tashqi xizmatlar o‘z logotipi yoki boshqaruv tugmalarini ko‘rsatishi mumkin.</p>
+    </section>
+
+    <footer class="footer">
+      <span>© Sinfdoshlar arxivi</span>
+      <a class="footer-admin" href="https://t.me/QARSHIYEV200" target="_blank" rel="noopener noreferrer">Admin</a>
+      <small class="footer-creator">Yaratuvchi: Qahramon</small>
+      <span>Yaxshi xotiralar asrab-avaylanadi <b>♥</b></span>
+    </footer>
+  </main>
+</body>
+</html>

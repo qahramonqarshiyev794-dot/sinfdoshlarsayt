@@ -1,0 +1,6 @@
+# Replace example.com with the DNS name that points to this server.
+example.com {
+	reverse_proxy 127.0.0.1:8000 {
+		header_up X-Real-IP {client_ip}
+	}
+}
