@@ -1,30 +1,43 @@
+
 services:
   - type: web
     name: sinfdoshlar
     runtime: python
     plan: free
     region: frankfurt
-    buildCommand: python -m py_compile server.py
+
+    buildCommand: pip install -r requirements.txt && python -m py_compile server.py
     startCommand: python server.py
+
     healthCheckPath: /
+
     envVars:
       - key: PYTHON_VERSION
         value: 3.13.4
+
       - key: HOST
         value: 0.0.0.0
+
       - key: PORT
         value: 10000
+
       - key: COOKIE_SECURE
         value: 1
-      - key: DATA_DIR
-        value: /tmp/sinfdoshlar-data
+
       - key: TRUSTED_PROXY_IPS
         value: 127.0.0.1,::1
+
+      - key: DATABASE_URL
+        sync: false
+
       - key: ADMIN_USERNAME
         sync: false
+
       - key: ADMIN_PASSWORD
         sync: false
+
       - key: INITIAL_VIDEO_URL
         value: ""
+
       - key: INITIAL_VIDEO_TITLE
         value: Sinfdoshlar uchun video
